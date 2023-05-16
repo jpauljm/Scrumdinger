@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
-    let scrum: DailyScrum
+    @Binding var scrum: DailyScrum
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,6 +21,7 @@ struct CardView: View {
                 Label("\(scrum.lengthInMinutes)", systemImage: "clock")
             }
         }
+        .foregroundColor(scrum.theme.accentColor)
     }
 }
 
@@ -28,7 +29,7 @@ struct CardView_Previews: PreviewProvider {
     static let scrum = DailyScrum.sampleData[0]
     
     static var previews: some View {
-        CardView(scrum: scrum)
+        CardView(scrum: .constant(scrum))
             .background(scrum.theme.mainColor)
             .previewLayout(.fixed(width: 400, height: 60))
     }

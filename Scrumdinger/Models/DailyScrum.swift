@@ -48,6 +48,10 @@ extension DailyScrum {
 }
 
 extension DailyScrum {
+    static var empty: DailyScrum {
+        DailyScrum(title: "", attendees: [], lengthInMinutes: 5, theme: .bubblegum)
+    }
+    
     var lengthInMinutesAsDouble: Double {
         get {
             Double(lengthInMinutes)
