@@ -10,6 +10,8 @@ import SwiftUI
 struct EditView: View {
     @Binding var scrum: DailyScrum
     @State private var newAttendeeName = ""
+    let cancelAction: ()->Void
+    let doneAction: ()->Void
     
     var body: some View {
         Form {
@@ -49,6 +51,18 @@ struct EditView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    cancelAction()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Done") {
+                    doneAction()
+                }
+            }
+        }
         .navigationTitle(scrum.title)
         .padding([.bottom, .horizontal])
     }
@@ -57,7 +71,7 @@ struct EditView: View {
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            EditView(scrum: .constant(DailyScrum.sampleData[0]))
+            EditView(scrum: .constant(DailyScrum.sampleData[0]), cancelAction: {}, doneAction: {})
         }
     }
 }

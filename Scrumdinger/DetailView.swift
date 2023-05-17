@@ -53,20 +53,12 @@ struct DetailView: View {
         }
         .sheet(isPresented: $isPresentingEditView) {
             NavigationStack {
-                EditView(scrum: $editingScrum)
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") {
-                                isPresentingEditView = false
-                            }
-                        }
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") {
-                                isPresentingEditView = false
-                                scrum = editingScrum
-                            }
-                        }
-                    }
+                EditView(scrum: $editingScrum, cancelAction: {
+                    isPresentingEditView = false
+                }, doneAction: {
+                    isPresentingEditView = false
+                    scrum = editingScrum
+                })
             }
         }
     }
