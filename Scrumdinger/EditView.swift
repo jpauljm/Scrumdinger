@@ -50,6 +50,7 @@ struct EditView: View {
             }
         }
         .navigationTitle(scrum.title)
+        .padding([.bottom, .horizontal])
     }
 }
 
